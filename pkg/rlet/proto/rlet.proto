@@ -1,0 +1,34 @@
+syntax = "proto3";
+option go_package = "./";
+
+package rlet;
+
+message ChessmapRequest {
+  string   NodeId   = 1;
+  NodeType NodeType = 2;
+}
+
+message Component {
+  NodeType        NodeType       = 1;
+  string          version        = 2;
+  repeated string SupervisorList = 3;
+}
+
+message ChessmapResponse {
+  string             NodeId        = 1;
+  repeated Component ComponentList = 2;
+}
+
+enum NodeType {
+  None    = 0;
+  Compute = 1;
+  Storage = 2;
+  Network = 3;
+  Stack   = 4;
+  Monitor = 5;
+  All     = 6;
+}
+
+service RletService {
+  rpc GetChessmap (ChessmapRequest) returns (ChessmapResponse);
+}

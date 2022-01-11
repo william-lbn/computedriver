@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${name}
+  labels:
+    app: ${name}
+spec:
+  containers:
+    - name: ${name}
+      image: ${image}
+      imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: ${cpu}
+          memory: ${memory}
+        limits:
+          cpu: ${cpu}
+          memory: ${memory}
+      ports:
+        - name: ${name}
+          containerPort: 80
+  hostNetwork: true
